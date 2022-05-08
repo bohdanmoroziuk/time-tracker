@@ -19,14 +19,14 @@ export default function App() {
           id="1"
           title="Mow the lawn"
           project="House Chores"
-          elapsed="8986300"
+          elapsed={8986300}
           isRunning
         />
         <EditableTimer
           id="2"
           title="Bake squash"
           project="Kitchen Chores"
-          elapsed="3890985"
+          elapsed={3890985}
           editFormOpen
         />
       </ScrollView>
