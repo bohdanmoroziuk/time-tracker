@@ -1,15 +1,24 @@
 import { FunctionComponent } from 'react';
-import { Text } from 'react-native';
+import { View } from 'react-native';
+
+import TimerForm from 'src/components/TimerForm';
+import TimerButton from 'src/components/TimerButton';
+
+import styles from './ToggleableTimerForm.styles';
 
 export interface ToggleableTimerFormProps {
   isOpen?: boolean;
 }
 
-const ToggleableTimerForm: FunctionComponent<ToggleableTimerFormProps> = ({ isOpen = true }) => {
+const ToggleableTimerForm: FunctionComponent<ToggleableTimerFormProps> = ({ isOpen = false }) => {
   return (
-    <Text>
-      ToggleableTimerForm
-    </Text>
+    <View style={[styles.container, !isOpen && styles.buttonPadding]}>
+      {isOpen ? (
+        <TimerForm />
+      ) : (
+        <TimerButton title="+" color="black" onPress={() => {}} />
+      )}
+    </View>
   );
 };
 

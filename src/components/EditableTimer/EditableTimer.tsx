@@ -3,7 +3,7 @@ import { FunctionComponent } from 'react';
 import Timer, { TimerProps } from 'src/components/Timer';
 import TimerForm, { TimerFormProps } from 'src/components/TimerForm';
 
-export interface EditableTimerProps extends TimerProps, TimerFormProps {
+export interface EditableTimerProps extends TimerProps {
   editFormOpen?: boolean;
 }
 

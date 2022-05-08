@@ -6,14 +6,14 @@ import styles from './TimerButton.styles';
 export interface TimerButtonProps {
   color: string;
   title: string;
-  small: boolean;
+  small?: boolean;
   onPress: TouchableOpacityProps['onPress'];
 }
 
 const TimerButton: FunctionComponent<TimerButtonProps> = ({
   color,
   title,
-  small,
+  small = false,
   onPress,
 }) => (
   <TouchableOpacity

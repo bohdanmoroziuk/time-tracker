@@ -6,7 +6,7 @@ import TimerButton from 'src/components/TimerButton';
 import styles from './TimerForm.styles';
 
 export interface TimerFormProps {
-  id: string;
+  id?: string;
   title?: string;
   project?: string;
 }
