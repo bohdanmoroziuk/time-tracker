@@ -1,12 +1,9 @@
 import { FunctionComponent } from 'react';
-import { Text } from 'react-native';
 
-export interface EditableTimerProps {
-  id: string;
-  title: string;
-  project: string;
-  elapsed: string;
-  isRunning?: boolean;
+import Timer, { TimerProps } from 'src/components/Timer';
+import TimerForm, { TimerFormProps } from 'src/components/TimerForm';
+
+export interface EditableTimerProps extends TimerProps, TimerFormProps {
   editFormOpen?: boolean;
 }
 
@@ -15,13 +12,27 @@ const EditableTimer: FunctionComponent<EditableTimerProps> = ({
   title,
   project,
   elapsed,
-  isRunning = true,
-  editFormOpen = true,
+  isRunning = false,
+  editFormOpen = false,
 }) => {
+  if (editFormOpen) {
+    return (
+      <TimerForm
+        id={id}
+        title={title}
+        project={project}
+      />
+    );
+  }
+
   return (
-    <Text>
-      EditableTimer
-    </Text>
+    <Timer
+      id={id}
+      title={title}
+      project={project}
+      elapsed={elapsed}
+      isRunning={isRunning}
+    />
   );
 };
 
