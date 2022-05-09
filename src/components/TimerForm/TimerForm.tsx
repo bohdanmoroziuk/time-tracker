@@ -66,7 +66,7 @@ const TimerForm: FunctionComponent<TimerFormProps> = ({
             style={styles.textInput}
             underlineColorAndroid="transparent"
             value={fields.project}
-            onChangeText={handleFieldChange('project  ')}
+            onChangeText={handleFieldChange('project')}
           />
         </View>
       </View>

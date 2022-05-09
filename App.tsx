@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 
 import EditableTimer from 'src/components/EditableTimer';
 import ToggleableTimerForm from 'src/components/ToggleableTimerForm';
+import { newTimer } from 'src/utils/timer';
 
 import styles from './App.styles';
 
@@ -41,6 +42,16 @@ export default function App() {
     ],
   });
 
+  const addTimer = (attrs: { title: string, project: string }) => {
+    setState((prevState) => ({
+      ...prevState,
+      timers: [
+        newTimer(attrs),
+        ...prevState.timers,
+      ],
+    }));
+  };
+
   return (
     <View style={styles.app}>
       <StatusBar style="auto" />
@@ -48,7 +59,7 @@ export default function App() {
         <Text style={styles.title}>Times</Text>
       </View>
       <ScrollView style={styles.timerList}>
-        <ToggleableTimerForm />
+        <ToggleableTimerForm onSubmit={addTimer} />
         {state.timers.map((timer) => (
           <EditableTimer
             id={timer.id}

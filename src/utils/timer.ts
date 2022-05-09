@@ -1,4 +1,5 @@
-import { v4 } from 'uuid';
+import 'react-native-get-random-values';
+import { nanoid } from 'nanoid';
 
 export const millisecondsToHuman = (ms: number) => {
   const seconds = Math.floor((ms / 1000) % 60);
@@ -22,14 +23,10 @@ const pad = (numberString: string, size: number) => {
   return padded;
 };
 
-export const newTimer = (attrs = { title: undefined, project: undefined }) => {
-  const timer = {
-    title: attrs.title || 'Timer',
-    project: attrs.project || 'Project',
-    id: v4(),
-    elapsed: 0,
-    isRunning: false,
-  };
-
-  return timer;
-};
+export const newTimer = (attrs: { title: string, project: string }) => ({
+  id: nanoid(),
+  title: attrs.title,
+  project: attrs.project,
+  elapsed: 0,
+  isRunning: false,
+});
