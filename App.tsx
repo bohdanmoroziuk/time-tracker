@@ -48,7 +48,7 @@ export default function App() {
         <Text style={styles.title}>Times</Text>
       </View>
       <ScrollView style={styles.timerList}>
-        <ToggleableTimerForm isOpen={false} />
+        <ToggleableTimerForm />
         {state.timers.map((timer) => (
           <EditableTimer
             id={timer.id}
