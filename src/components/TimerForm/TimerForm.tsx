@@ -1,4 +1,4 @@
-import { FunctionComponent, useMemo } from 'react';
+import { FunctionComponent, useMemo, useState } from 'react';
 import { Text, View, TextInput } from 'react-native';
 
 import TimerButton from 'src/components/TimerButton';
@@ -9,14 +9,38 @@ export interface TimerFormProps {
   id?: string;
   title?: string;
   project?: string;
+  onSubmit: (timer: { id: string | undefined, title: string, project: string }) => void;
+  onClose: () => void;
 }
 
 const TimerForm: FunctionComponent<TimerFormProps> = ({
   id,
   title = '',
   project = '',
+  onSubmit,
+  onClose,
 }) => {
+  const [fields, setFields] = useState({
+    title: id ? title : '',
+    project: id ? project : '',
+  });
+
   const submitText = useMemo(() => id ? 'Update' : 'Create', [id]);
+
+  const handleFieldChange = (name: string) => (value: string) => {
+    setFields((prevFields) => ({
+      ...prevFields,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = () => {
+    onSubmit({
+      id,
+      title: fields.title,
+      project: fields.project,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -28,7 +52,8 @@ const TimerForm: FunctionComponent<TimerFormProps> = ({
           <TextInput
             style={styles.textInput}
             underlineColorAndroid="transparent"
-            defaultValue={title}
+            value={fields.title}
+            onChangeText={handleFieldChange('title')}
           />
         </View>
       </View>
@@ -40,13 +65,24 @@ const TimerForm: FunctionComponent<TimerFormProps> = ({
           <TextInput
             style={styles.textInput}
             underlineColorAndroid="transparent"
-            defaultValue={project}
+            value={fields.project}
+            onChangeText={handleFieldChange('project  ')}
           />
         </View>
       </View>
       <View style={styles.buttonGroup}>
-        <TimerButton small color="#21BA45" title={submitText} onPress={() => {}} />
-        <TimerButton small color="#DB2828" title="Cancel" onPress={() => {}} />
+        <TimerButton
+          small
+          color="#21BA45"
+          title={submitText}
+          onPress={handleSubmit}
+        />
+        <TimerButton
+          small
+          color="#DB2828"
+          title="Cancel"
+          onPress={onClose}
+        />
       </View>
     </View>
   );
