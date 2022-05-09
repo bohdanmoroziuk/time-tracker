@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 
 import EditableTimer from 'src/components/EditableTimer';
 import ToggleableTimerForm from 'src/components/ToggleableTimerForm';
+import { AddTimerAttrs } from 'src/types';
 import { newTimer } from 'src/utils/timer';
 
 import styles from './App.styles';
@@ -42,7 +43,7 @@ export default function App() {
     ],
   });
 
-  const addTimer = (attrs: { title: string, project: string }) => {
+  const addTimer = (attrs: AddTimerAttrs) => {
     setState((prevState) => ({
       ...prevState,
       timers: [

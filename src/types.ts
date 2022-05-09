@@ -5,3 +5,5 @@ export interface Timer {
   elapsed: number;
   isRunning: boolean;
 }
+
+export type AddTimerAttrs = Pick<Timer, 'title' | 'project'>;
