@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-get-random-values';
 import { nanoid } from 'nanoid';
 
+import Header from 'src/components/Header';
 import EditableTimer from 'src/components/EditableTimer';
 import ToggleableTimerForm from 'src/components/ToggleableTimerForm';
 import { AddTimerAttrs, UpdateTimerAttrs } from 'src/types';
@@ -69,9 +70,7 @@ export default function App() {
   return (
     <View style={styles.app}>
       <StatusBar style="auto" />
-      <View style={styles.header}>
-        <Text style={styles.title}>Times</Text>
-      </View>
+      <Header title="Timers" />
       <ScrollView style={styles.timerList}>
         <ToggleableTimerForm onSubmit={addTimer} />
         {state.timers.map((timer) => (
