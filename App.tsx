@@ -6,7 +6,7 @@ import { nanoid } from 'nanoid';
 
 import EditableTimer from 'src/components/EditableTimer';
 import ToggleableTimerForm from 'src/components/ToggleableTimerForm';
-import { AddTimerAttrs } from 'src/types';
+import { AddTimerAttrs, UpdateTimerAttrs } from 'src/types';
 import { newTimer } from 'src/utils/timer';
 
 import styles from './App.styles';
@@ -43,13 +43,26 @@ export default function App() {
     ],
   });
 
-  const addTimer = (attrs: AddTimerAttrs) => {
+  const addTimer = (attrs: unknown) => {
     setState((prevState) => ({
       ...prevState,
       timers: [
-        newTimer(attrs),
+        newTimer(attrs as AddTimerAttrs),
         ...prevState.timers,
       ],
+    }));
+  };
+
+  const updateTimer = (attrs: unknown) => {
+    setState((prevState) => ({
+      ...prevState,
+      timers: prevState.timers.map((timer) => {
+        const { title, project, id } = attrs as UpdateTimerAttrs;
+
+        return timer.id === id
+          ? { ...timer, title, project }
+          : timer
+      }),
     }));
   };
 
@@ -69,6 +82,7 @@ export default function App() {
             project={timer.project}
             elapsed={timer.elapsed}
             isRunning={timer.isRunning}
+            onEdit={updateTimer}
           />
         ))}
       </ScrollView>

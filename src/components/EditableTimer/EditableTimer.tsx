@@ -1,10 +1,15 @@
 import { FunctionComponent, useState } from 'react';
 
-import Timer, { TimerProps } from 'src/components/Timer';
+import Timer from 'src/components/Timer';
 import TimerForm from 'src/components/TimerForm';
 
-export interface EditableTimerProps extends TimerProps {
-  editFormOpen?: boolean;
+export interface EditableTimerProps {
+  id: string;
+  title: string;
+  project: string;
+  elapsed: number;
+  isRunning?: boolean;
+  onEdit: (attrs: unknown) => void,
 }
 
 const EditableTimer: FunctionComponent<EditableTimerProps> = ({
@@ -13,8 +18,30 @@ const EditableTimer: FunctionComponent<EditableTimerProps> = ({
   project,
   elapsed,
   isRunning = false,
+  onEdit,
 }) => {
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
+
+  const openEditForm = () => {
+    setIsEditFormOpen(true);
+  };
+
+  const closeEditForm = () => {
+    setIsEditFormOpen(false);
+  };
+
+  const handleStartEditing = () => {
+    openEditForm();
+  };
+
+  const handleCancelEditing = () => {
+    closeEditForm();
+  };
+
+  const handleEdit = (attrs: unknown) => {
+    onEdit(attrs);
+    closeEditForm();
+  };
 
   if (isEditFormOpen) {
     return (
@@ -22,6 +49,8 @@ const EditableTimer: FunctionComponent<EditableTimerProps> = ({
         id={id}
         title={title}
         project={project}
+        onCancel={handleCancelEditing}
+        onSubmit={handleEdit}
       />
     );
   }
@@ -33,6 +62,7 @@ const EditableTimer: FunctionComponent<EditableTimerProps> = ({
       project={project}
       elapsed={elapsed}
       isRunning={isRunning}
+      onEdit={handleStartEditing}
     />
   );
 };

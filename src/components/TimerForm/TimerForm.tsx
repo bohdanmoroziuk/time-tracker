@@ -9,36 +9,35 @@ export interface TimerFormProps {
   id?: string;
   title?: string;
   project?: string;
-  onSubmit: (timer: { id: string | undefined, title: string, project: string }) => void;
-  onClose: () => void;
+  onSubmit: (timer: unknown) => void;
+  onCancel: () => void;
 }
 
 const TimerForm: FunctionComponent<TimerFormProps> = ({
-  id,
-  title = '',
-  project = '',
   onSubmit,
-  onClose,
+  onCancel,
+  id,
+  ...restProps
 }) => {
-  const [fields, setFields] = useState({
-    title: id ? title : '',
-    project: id ? project : '',
-  });
+  const [title, setTitle] = useState(restProps.title ?? '');
+
+  const [project, setProject] = useState(restProps.project ?? '');
 
   const submitText = useMemo(() => id ? 'Update' : 'Create', [id]);
 
-  const handleFieldChange = (name: string) => (value: string) => {
-    setFields((prevFields) => ({
-      ...prevFields,
-      [name]: value,
-    }));
+  const handleTitleChange = (text: string) => {
+    setTitle(text);
+  };
+
+  const handleProjectChange = (text: string) => {
+    setProject(text);
   };
 
   const handleSubmit = () => {
     onSubmit({
       id,
-      title: fields.title,
-      project: fields.project,
+      title,
+      project,
     });
   };
 
@@ -52,8 +51,8 @@ const TimerForm: FunctionComponent<TimerFormProps> = ({
           <TextInput
             style={styles.textInput}
             underlineColorAndroid="transparent"
-            value={fields.title}
-            onChangeText={handleFieldChange('title')}
+            value={title}
+            onChangeText={handleTitleChange}
           />
         </View>
       </View>
@@ -65,8 +64,8 @@ const TimerForm: FunctionComponent<TimerFormProps> = ({
           <TextInput
             style={styles.textInput}
             underlineColorAndroid="transparent"
-            value={fields.project}
-            onChangeText={handleFieldChange('project')}
+            value={project}
+            onChangeText={handleProjectChange}
           />
         </View>
       </View>
@@ -81,7 +80,7 @@ const TimerForm: FunctionComponent<TimerFormProps> = ({
           small
           color="#DB2828"
           title="Cancel"
-          onPress={onClose}
+          onPress={onCancel}
         />
       </View>
     </View>

@@ -3,12 +3,11 @@ import { View } from 'react-native';
 
 import TimerForm from 'src/components/TimerForm';
 import TimerButton from 'src/components/TimerButton';
-import { AddTimerAttrs } from 'src/types';
 
 import styles from './ToggleableTimerForm.styles';
 
 export interface ToggleableTimerFormProps {
-  onSubmit: (attrs: AddTimerAttrs) => void;
+  onSubmit: (attrs: unknown) => void;
 }
 
 const ToggleableTimerForm: FunctionComponent<ToggleableTimerFormProps> = ({ onSubmit }) => {
@@ -22,7 +21,8 @@ const ToggleableTimerForm: FunctionComponent<ToggleableTimerFormProps> = ({ onSu
     setIsOpen(false);
   };
 
-  const handleSubmit = (attrs: AddTimerAttrs) => {
+  const handleSubmit = (attrs: unknown) => {
+    console.log('add', attrs);
     onSubmit(attrs);
     close();
   };
@@ -32,7 +32,7 @@ const ToggleableTimerForm: FunctionComponent<ToggleableTimerFormProps> = ({ onSu
       {isOpen ? (
         <TimerForm
           onSubmit={handleSubmit}
-          onClose={close}
+          onCancel={close}
         />
       ) : (
         <TimerButton

@@ -7,3 +7,5 @@ export interface Timer {
 }
 
 export type AddTimerAttrs = Pick<Timer, 'title' | 'project'>;
+
+export type UpdateTimerAttrs = Pick<Timer, 'id' | 'title' | 'project'>;
