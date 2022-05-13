@@ -53,6 +53,7 @@ const TimerForm: FunctionComponent<TimerFormProps> = ({
         <View style={styles.textInputContainer}>
           <TextInput
             style={styles.textInput}
+            placeholder="Title"
             underlineColorAndroid="transparent"
             value={title}
             onChangeText={handleTitleChange}
@@ -66,6 +67,7 @@ const TimerForm: FunctionComponent<TimerFormProps> = ({
         <View style={styles.textInputContainer}>
           <TextInput
             style={styles.textInput}
+            placeholder="Project"
             underlineColorAndroid="transparent"
             value={project}
             onChangeText={handleProjectChange}
