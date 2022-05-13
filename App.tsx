@@ -1,5 +1,5 @@
 import { useState } from 'react'; 
-import { Text, View, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-get-random-values';
 import { nanoid } from 'nanoid';
@@ -67,6 +67,13 @@ export default function App() {
     }));
   };
 
+  const removeTimer = (id: string) => {
+    setState((prevState) => ({
+      ...prevState,
+      timers: prevState.timers.filter((timer) => timer.id !== id),
+    }));
+  };
+
   return (
     <View style={styles.app}>
       <StatusBar style="auto" />
@@ -82,6 +89,7 @@ export default function App() {
             elapsed={timer.elapsed}
             isRunning={timer.isRunning}
             onEdit={updateTimer}
+            onRemove={removeTimer}
           />
         ))}
       </ScrollView>

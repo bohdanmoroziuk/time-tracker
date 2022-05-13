@@ -22,7 +22,6 @@ const ToggleableTimerForm: FunctionComponent<ToggleableTimerFormProps> = ({ onSu
   };
 
   const handleSubmit = (attrs: unknown) => {
-    console.log('add', attrs);
     onSubmit(attrs);
     close();
   };

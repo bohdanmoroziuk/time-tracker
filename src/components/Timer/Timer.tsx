@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { Text, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 
 import TimerButton from 'src/components/TimerButton';
 import { millisecondsToHuman } from 'src/utils/timer';
@@ -12,19 +12,36 @@ export interface TimerProps {
   elapsed: number;
   isRunning?: boolean;
   onEdit: () => void;
-  // onRemove: () => void;
+  onRemove: (id: string) => void;
   // onStart: () => void;
   // onStop: () => void;
 }
 
 const Timer: FunctionComponent<TimerProps> = ({
+  id,
   title,
   project,
   elapsed,
   isRunning = false,
   onEdit,
+  onRemove,
 }) => {
   const elapsedTime = millisecondsToHuman(elapsed);
+
+  const handleRemove = () => Alert.alert(
+    'Confirm the operation',
+    'Are you sure you want to remove the timer?',
+    [
+      {
+        text: 'No',
+        style: 'cancel',
+      },
+      {
+        text: 'Yes',
+        onPress: () => onRemove(id),
+      },
+    ],
+  );
 
   return (
     <View style={styles.container}>
@@ -38,7 +55,12 @@ const Timer: FunctionComponent<TimerProps> = ({
           title="Edit"
           onPress={onEdit}
         />
-        <TimerButton small color="red" title="Remove" onPress={() => {}} />
+        <TimerButton
+          small
+          color="red"
+          title="Remove"
+          onPress={handleRemove}
+        />
       </View>
       <TimerButton color="#21BA45" title="Start" onPress={() => {}} />
     </View>
