@@ -42,7 +42,10 @@ const TimerForm: FunctionComponent<TimerFormProps> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={styles.container}
+      testID="timer-form"  
+    >
       <View style={styles.field}>
         <Text style={styles.textInputLabel}>
           Title
