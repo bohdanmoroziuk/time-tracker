@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimerButton renders successfully 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "borderColor": "blue",
+      "borderRadius": 3,
+      "borderWidth": 2,
+      "marginTop": 10,
+      "minWidth": 100,
+      "opacity": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontWeight": "bold",
+          "textAlign": "center",
+        },
+        Object {
+          "fontSize": 14,
+          "padding": 5,
+        },
+        Object {
+          "color": "blue",
+        },
+      ]
+    }
+  >
+    Edit
+  </Text>
+</View>
+`;
