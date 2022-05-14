@@ -73,26 +73,26 @@ const Timer: FunctionComponent<TimerProps> = ({
         />
         <TimerButton
           small
-          color="blue"
+          color="black"
           title="Reset"
           onPress={handleReset}
         />
         <TimerButton
           small
-          color="blue"
+          color="red"
           title="Remove"
           onPress={handleRemove}
         />
       </View>
       {isRunning ? (
         <TimerButton
-          color="#DB2828"
+          color="red"
           title="Stop"
           onPress={handleStop}
         />
       ) : (
         <TimerButton
-          color="#21BA45"
+          color="green"
           title="Start"
           onPress={handleStart}
         />
