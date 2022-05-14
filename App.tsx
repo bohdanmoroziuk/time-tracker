@@ -123,8 +123,8 @@ export default function App() {
     <View style={styles.app}>
       <StatusBar style="auto" />
       <Header title="Timers" />
+      <ToggleableTimerForm onSubmit={addTimer} />
       <ScrollView style={styles.timerList}>
-        <ToggleableTimerForm onSubmit={addTimer} />
         {state.timers.map((timer) => (
           <EditableTimer
             id={timer.id}
