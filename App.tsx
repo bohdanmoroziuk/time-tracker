@@ -1,4 +1,4 @@
-import { useState } from 'react'; 
+import { useState, useEffect } from 'react'; 
 import { View, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-get-random-values';
@@ -74,6 +74,40 @@ export default function App() {
     }));
   };
 
+  const toggleTimer = (id: string) => {
+    setState((prevState) => ({
+      ...prevState,
+      timers: prevState.timers.map((timer) => {
+        return timer.id === id
+          ? { ...timer, isRunning: !timer.isRunning }
+          : timer
+      }),
+    }));
+  };
+
+  useEffect(() => {
+    const DELAY = 1000;
+    const INCREASE = 1000;
+
+    let intervalId = setInterval(() => {
+      setState((prevState) => ({
+        ...prevState,
+        timers: prevState.timers.map((timer) => {
+          const { isRunning, elapsed } = timer;
+
+          return {
+            ...timer,
+            elapsed: isRunning ? elapsed + INCREASE : elapsed,
+          }
+        }),
+      }));
+    }, DELAY);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
   return (
     <View style={styles.app}>
       <StatusBar style="auto" />
@@ -90,6 +124,8 @@ export default function App() {
             isRunning={timer.isRunning}
             onEdit={updateTimer}
             onRemove={removeTimer}
+            onStart={toggleTimer}
+            onStop={toggleTimer}
           />
         ))}
       </ScrollView>

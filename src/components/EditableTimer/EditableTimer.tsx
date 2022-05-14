@@ -11,6 +11,8 @@ export interface EditableTimerProps {
   isRunning?: boolean;
   onEdit: (attrs: unknown) => void,
   onRemove: (id: string) => void;
+  onStart: (id: string) => void;
+  onStop: (id: string) => void;
 }
 
 const EditableTimer: FunctionComponent<EditableTimerProps> = ({
@@ -21,6 +23,8 @@ const EditableTimer: FunctionComponent<EditableTimerProps> = ({
   isRunning = false,
   onEdit,
   onRemove,
+  onStart,
+  onStop,
 }) => {
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
 
@@ -66,6 +70,8 @@ const EditableTimer: FunctionComponent<EditableTimerProps> = ({
       isRunning={isRunning}
       onEdit={handleStartEditing}
       onRemove={onRemove}
+      onStart={onStart}
+      onStop={onStop}
     />
   );
 };

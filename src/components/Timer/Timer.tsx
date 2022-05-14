@@ -13,8 +13,8 @@ export interface TimerProps {
   isRunning?: boolean;
   onEdit: () => void;
   onRemove: (id: string) => void;
-  // onStart: () => void;
-  // onStop: () => void;
+  onStart: (id: string) => void;
+  onStop: (id: string) => void;
 }
 
 const Timer: FunctionComponent<TimerProps> = ({
@@ -25,6 +25,8 @@ const Timer: FunctionComponent<TimerProps> = ({
   isRunning = false,
   onEdit,
   onRemove,
+  onStart,
+  onStop
 }) => {
   const elapsedTime = millisecondsToHuman(elapsed);
 
@@ -43,6 +45,14 @@ const Timer: FunctionComponent<TimerProps> = ({
     ],
   );
 
+  const handleStart = () => {
+    onStart(id);
+  };
+
+  const handleStop = () => {
+    onStop(id);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -57,12 +67,24 @@ const Timer: FunctionComponent<TimerProps> = ({
         />
         <TimerButton
           small
-          color="red"
+          color="blue"
           title="Remove"
           onPress={handleRemove}
         />
       </View>
-      <TimerButton color="#21BA45" title="Start" onPress={() => {}} />
+      {isRunning ? (
+        <TimerButton
+          color="#DB2828"
+          title="Stop"
+          onPress={handleStop}
+        />
+      ) : (
+        <TimerButton
+          color="#21BA45"
+          title="Start"
+          onPress={handleStart}
+        />
+      )}
     </View>
   );
 };
