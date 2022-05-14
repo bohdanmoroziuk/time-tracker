@@ -1,10 +1,10 @@
 import { FunctionComponent } from 'react';
-import { TouchableOpacity, TouchableOpacityProps, Text } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps, Text, ColorValue } from 'react-native';
 
 import styles from './TimerButton.styles';
 
 export interface TimerButtonProps {
-  color: string;
+  color: ColorValue;
   title: string;
   small?: boolean;
   onPress: TouchableOpacityProps['onPress'];
