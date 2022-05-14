@@ -85,6 +85,17 @@ export default function App() {
     }));
   };
 
+  const resetTimer = (id: string) => {
+    setState((prevState) => ({
+      ...prevState,
+      timers: prevState.timers.map((timer) => {
+        return timer.id === id
+          ? { ...timer, elapsed: 0 }
+          : timer
+      }),
+    }));
+  };
+
   useEffect(() => {
     const DELAY = 1000;
     const INCREASE = 1000;
@@ -126,6 +137,7 @@ export default function App() {
             onRemove={removeTimer}
             onStart={toggleTimer}
             onStop={toggleTimer}
+            onReset={resetTimer}
           />
         ))}
       </ScrollView>

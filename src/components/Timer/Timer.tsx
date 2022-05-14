@@ -15,6 +15,7 @@ export interface TimerProps {
   onRemove: (id: string) => void;
   onStart: (id: string) => void;
   onStop: (id: string) => void;
+  onReset: (id: string) => void;
 }
 
 const Timer: FunctionComponent<TimerProps> = ({
@@ -26,7 +27,8 @@ const Timer: FunctionComponent<TimerProps> = ({
   onEdit,
   onRemove,
   onStart,
-  onStop
+  onStop,
+  onReset,
 }) => {
   const elapsedTime = millisecondsToHuman(elapsed);
 
@@ -53,6 +55,10 @@ const Timer: FunctionComponent<TimerProps> = ({
     onStop(id);
   };
 
+  const handleReset = () => {
+    onReset(id);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -64,6 +70,12 @@ const Timer: FunctionComponent<TimerProps> = ({
           color="blue"
           title="Edit"
           onPress={onEdit}
+        />
+        <TimerButton
+          small
+          color="blue"
+          title="Reset"
+          onPress={handleReset}
         />
         <TimerButton
           small
