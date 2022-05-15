@@ -2,6 +2,7 @@ import { FunctionComponent, useState } from 'react';
 
 import Timer from 'src/components/Timer';
 import TimerForm from 'src/components/TimerForm';
+import { useTimers, UpdateTimerAttrs } from 'src/contexts/timers';
 
 export interface EditableTimerProps {
   id: string;
@@ -9,11 +10,6 @@ export interface EditableTimerProps {
   project: string;
   elapsed: number;
   isRunning?: boolean;
-  onEdit: (attrs: unknown) => void,
-  onRemove: (id: string) => void;
-  onStart: (id: string) => void;
-  onStop: (id: string) => void;
-  onReset: (id: string) => void;
 }
 
 const EditableTimer: FunctionComponent<EditableTimerProps> = ({
@@ -22,12 +18,9 @@ const EditableTimer: FunctionComponent<EditableTimerProps> = ({
   project,
   elapsed,
   isRunning = false,
-  onEdit,
-  onRemove,
-  onStart,
-  onStop,
-  onReset,
 }) => {
+  const { updateTimer } = useTimers();
+
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
 
   const openEditForm = () => {
@@ -47,7 +40,7 @@ const EditableTimer: FunctionComponent<EditableTimerProps> = ({
   };
 
   const handleEdit = (attrs: unknown) => {
-    onEdit(attrs);
+    updateTimer(attrs as UpdateTimerAttrs);
     closeEditForm();
   };
 
@@ -71,10 +64,6 @@ const EditableTimer: FunctionComponent<EditableTimerProps> = ({
       elapsed={elapsed}
       isRunning={isRunning}
       onEdit={handleStartEditing}
-      onRemove={onRemove}
-      onStart={onStart}
-      onStop={onStop}
-      onReset={onReset}
     />
   );
 };

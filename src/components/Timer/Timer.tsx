@@ -3,8 +3,10 @@ import { Alert, Text, View } from 'react-native';
 
 import TimerButton from 'src/components/TimerButton';
 import { millisecondsToHuman } from 'src/utils/timer';
+import { useTimers } from 'src/contexts/timers'; 
 
 import styles from './Timer.styles';
+
 export interface TimerProps {
   id: string;
   title: string;
@@ -12,10 +14,6 @@ export interface TimerProps {
   elapsed: number;
   isRunning?: boolean;
   onEdit: () => void;
-  onRemove: (id: string) => void;
-  onStart: (id: string) => void;
-  onStop: (id: string) => void;
-  onReset: (id: string) => void;
 }
 
 const Timer: FunctionComponent<TimerProps> = ({
@@ -25,11 +23,13 @@ const Timer: FunctionComponent<TimerProps> = ({
   elapsed,
   isRunning = false,
   onEdit,
-  onRemove,
-  onStart,
-  onStop,
-  onReset,
 }) => {
+  const {
+    resetTimer,
+    removeTimer,
+    toggleTimer,
+  } = useTimers();
+
   const elapsedTime = millisecondsToHuman(elapsed);
 
   const handleRemove = () => Alert.alert(
@@ -42,21 +42,21 @@ const Timer: FunctionComponent<TimerProps> = ({
       },
       {
         text: 'Yes',
-        onPress: () => onRemove(id),
+        onPress: () => removeTimer(id),
       },
     ],
   );
 
   const handleStart = () => {
-    onStart(id);
+    toggleTimer(id);
   };
 
   const handleStop = () => {
-    onStop(id);
+    toggleTimer(id);
   };
 
   const handleReset = () => {
-    onReset(id);
+    resetTimer(id);
   };
 
   return (
