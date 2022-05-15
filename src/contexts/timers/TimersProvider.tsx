@@ -1,10 +1,13 @@
 import { FunctionComponent, useReducer, useEffect } from 'react';
+import { useToast } from 'react-native-toast-notifications';
 
 import { AddTimerAttrs, UpdateTimerAttrs } from 'src/contexts/timers/types';
 import { TimersContext } from 'src/contexts/timers/TimersContext';
 import { timersReducer, initialState } from 'src/contexts/timers/timersReducer';
 
 export const TimersProvider: FunctionComponent = ({ children }) => {
+  const toast = useToast();
+
   const [timers, dispatch] = useReducer(timersReducer, initialState);
 
   const addTimer = (attrs: AddTimerAttrs) => {
@@ -14,6 +17,8 @@ export const TimersProvider: FunctionComponent = ({ children }) => {
         attrs,
       }
     });
+
+    toast.show('New timer added');
   };
 
   const updateTimer = (attrs: UpdateTimerAttrs) => {
@@ -23,6 +28,8 @@ export const TimersProvider: FunctionComponent = ({ children }) => {
         attrs,
       },
     });
+
+    toast.show('Timer updated');
   };
 
   const removeTimer = (id: string) => {
@@ -32,6 +39,8 @@ export const TimersProvider: FunctionComponent = ({ children }) => {
         id,
       },
     });
+
+    toast.show('Timer removed');
   };
 
   const resetTimer = (id: string) => {
