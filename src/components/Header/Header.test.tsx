@@ -9,7 +9,6 @@ describe('Header', () => {
     const { toJSON } = render(<Header title={title} />);
 
     expect(toJSON()).toMatchSnapshot();
-
   });
 
   it('renders correctly', () => {

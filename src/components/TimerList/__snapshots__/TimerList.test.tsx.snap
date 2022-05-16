@@ -1,0 +1,230 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimerList renders a list of timers 1`] = `
+<RCTScrollView
+  style={
+    Object {
+      "paddingBottom": 15,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "borderColor": "#d6d7da",
+          "borderRadius": 10,
+          "borderWidth": 2,
+          "margin": 15,
+          "marginBottom": 0,
+          "padding": 15,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 14,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Abs
+      </Text>
+      <Text>
+        Workout
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 26,
+            "fontWeight": "bold",
+            "paddingVertical": 15,
+            "textAlign": "center",
+          }
+        }
+      >
+        00:00:00
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "borderColor": "blue",
+              "borderRadius": 3,
+              "borderWidth": 2,
+              "marginTop": 10,
+              "minWidth": 100,
+              "opacity": 1,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontSize": 14,
+                  "padding": 5,
+                },
+                Object {
+                  "color": "blue",
+                },
+              ]
+            }
+          >
+            Edit
+          </Text>
+        </View>
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "borderColor": "black",
+              "borderRadius": 3,
+              "borderWidth": 2,
+              "marginTop": 10,
+              "minWidth": 100,
+              "opacity": 1,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontSize": 14,
+                  "padding": 5,
+                },
+                Object {
+                  "color": "black",
+                },
+              ]
+            }
+          >
+            Reset
+          </Text>
+        </View>
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "borderColor": "red",
+              "borderRadius": 3,
+              "borderWidth": 2,
+              "marginTop": 10,
+              "minWidth": 100,
+              "opacity": 1,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontSize": 14,
+                  "padding": 5,
+                },
+                Object {
+                  "color": "red",
+                },
+              ]
+            }
+          >
+            Remove
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "borderColor": "green",
+            "borderRadius": 3,
+            "borderWidth": 2,
+            "marginTop": 10,
+            "minWidth": 100,
+            "opacity": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontWeight": "bold",
+                "textAlign": "center",
+              },
+              Object {
+                "fontSize": 16,
+                "padding": 10,
+              },
+              Object {
+                "color": "green",
+              },
+            ]
+          }
+        >
+          Start
+        </Text>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
