@@ -5,6 +5,18 @@ import Timer from './Timer';
 
 jest.spyOn(Alert, 'alert');
 
+const mockRemoveTimer = jest.fn();
+const mockResetTimer = jest.fn();
+const mockToggleTimer = jest.fn();
+
+jest.mock('../../contexts/timers', () => ({
+  useTimers: jest.fn().mockImplementation(() => ({
+    removeTimer: mockRemoveTimer,
+    resetTimer: mockResetTimer,
+    toggleTimer: mockToggleTimer,
+  })),
+}));
+
 beforeEach(() => {
   jest.clearAllMocks();
 });
@@ -54,7 +66,7 @@ describe('Timer', () => {
     expect(getByText(humanReadableElapsed)).toBeDefined();
   });
 
-  it('calls an onEdit callback when the edit button is pressed', () => {
+  it('enables editing mode', () => {
     const { getByText } = render(
       <Timer
         {...{
@@ -73,7 +85,7 @@ describe('Timer', () => {
     expect(mockOnEdit).toHaveBeenCalledTimes(1);
   });
 
-  it('calls an onRemove callback when the remove button is pressed', () => {
+  it('removes the timer', () => {
     const { getByText } = render(
       <Timer
         {...{
@@ -95,7 +107,65 @@ describe('Timer', () => {
      */
     (Alert.alert as jest.Mock).mock.calls[0][2][1].onPress();
 
-    // expect(mockOnRemove).toHaveBeenCalledTimes(1);
-    // expect(mockOnRemove).toHaveBeenCalledWith(id);
+    expect(mockRemoveTimer).toHaveBeenCalledTimes(1);
+    expect(mockRemoveTimer).toHaveBeenCalledWith(id);
+  });
+
+  it('resets the timer', () => {
+    const { getByText } = render(
+      <Timer
+        {...{
+          id,
+          title,
+          project,
+          elapsed,
+          isRunning,
+          onEdit: mockOnEdit,
+        }}
+      />
+    );
+
+    fireEvent.press(getByText('Reset'));
+
+    expect(mockResetTimer).toHaveBeenCalledTimes(1);
+    expect(mockResetTimer).toHaveBeenCalledWith(id);
+  });
+
+  it('toggles the timer state', () => {
+    const { getByText, rerender } = render(
+      <Timer
+        {...{
+          id,
+          title,
+          project,
+          elapsed,
+          isRunning,
+          onEdit: mockOnEdit,
+        }}
+      />
+    );
+
+    fireEvent.press(getByText('Start'));
+
+    expect(mockToggleTimer).toHaveBeenCalledTimes(1);
+    expect(mockToggleTimer).toHaveBeenCalledWith(id);
+
+    rerender(
+      <Timer
+        {...{
+          id,
+          title,
+          project,
+          elapsed,
+          isRunning: true,
+          onEdit: mockOnEdit,
+        }}
+      />
+    );
+
+    fireEvent.press(getByText('Stop'));
+
+    expect(mockToggleTimer).toHaveBeenCalledTimes(2);
+    expect(mockToggleTimer).toHaveBeenCalledWith(id);
   });
 });

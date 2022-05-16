@@ -102,6 +102,48 @@ exports[`Timer renders successfully 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
+          "borderColor": "black",
+          "borderRadius": 3,
+          "borderWidth": 2,
+          "marginTop": 10,
+          "minWidth": 100,
+          "opacity": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+            },
+            Object {
+              "fontSize": 14,
+              "padding": 5,
+            },
+            Object {
+              "color": "black",
+            },
+          ]
+        }
+      >
+        Reset
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
           "borderColor": "red",
           "borderRadius": 3,
           "borderWidth": 2,
@@ -145,7 +187,7 @@ exports[`Timer renders successfully 1`] = `
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "borderColor": "#21BA45",
+        "borderColor": "green",
         "borderRadius": 3,
         "borderWidth": 2,
         "marginTop": 10,
@@ -166,7 +208,7 @@ exports[`Timer renders successfully 1`] = `
             "padding": 10,
           },
           Object {
-            "color": "#21BA45",
+            "color": "green",
           },
         ]
       }
