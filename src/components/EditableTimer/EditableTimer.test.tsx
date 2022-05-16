@@ -9,11 +9,6 @@ describe('EditableTimer', () => {
     const project = 'Workout';
     const elapsed = 132323;
     const isRunning = false;
-    const mockOnEdit = jest.fn();
-    const mockOnRemove = jest.fn();
-    const mockOnStart = jest.fn();
-    const mockOnStop = jest.fn();
-    const mockOnReset = jest.fn();
 
     const { getByText, queryByTestId } = render(
       <EditableTimer
@@ -23,11 +18,6 @@ describe('EditableTimer', () => {
           project,
           elapsed,
           isRunning,
-          onEdit: mockOnEdit,
-          onRemove: mockOnRemove,
-          onStart: mockOnStart,
-          onStop: mockOnStop,
-          onReset: mockOnReset,
         }}
       />
     );
