@@ -3,6 +3,7 @@ import { FunctionComponent, useState } from 'react';
 import Timer from 'src/components/Timer';
 import TimerForm from 'src/components/TimerForm';
 import { useTimers, UpdateTimerAttrs } from 'src/contexts/timers';
+import useToggle from 'src/hooks/useToggle';
 
 export interface EditableTimerProps {
   id: string;
@@ -21,15 +22,11 @@ const EditableTimer: FunctionComponent<EditableTimerProps> = ({
 }) => {
   const { updateTimer } = useTimers();
 
-  const [isEditFormOpen, setIsEditFormOpen] = useState(false);
-
-  const openEditForm = () => {
-    setIsEditFormOpen(true);
-  };
-
-  const closeEditForm = () => {
-    setIsEditFormOpen(false);
-  };
+  const {
+    value: isEditFormOpen,
+    setTrue: openEditForm,
+    setFalse: closeEditForm,
+  } = useToggle();
 
   const handleStartEditing = () => {
     openEditForm();

@@ -4,21 +4,18 @@ import { View } from 'react-native';
 import TimerForm from 'src/components/TimerForm';
 import TimerButton from 'src/components/TimerButton';
 import { useTimers, AddTimerAttrs } from 'src/contexts/timers';
+import useToggle from 'src/hooks/useToggle';
 
 import styles from './ToggleableTimerForm.styles';
 
 const ToggleableTimerForm: FunctionComponent = () => {
   const { addTimer } = useTimers();
 
-  const [isOpen, setIsOpen] = useState(false);
-  
-  const open = () => {
-    setIsOpen(true);
-  };
-
-  const close = () => {
-    setIsOpen(false);
-  };
+  const {
+    value: isOpen,
+    setTrue: open,
+    setFalse: close,
+  } = useToggle();
 
   const handleSubmit = (attrs: unknown) => {
     addTimer(attrs as AddTimerAttrs);
