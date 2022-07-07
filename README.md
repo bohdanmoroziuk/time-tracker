@@ -1,5 +1,7 @@
 # Time Tracker
 
+> A mobile application for tracking your activity over time.
+
 ## Preview
 
 <img src="./time-tracker" alt="Time Tracker" />
